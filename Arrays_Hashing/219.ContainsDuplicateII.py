@@ -30,13 +30,24 @@ class Solution(object):
         :type k: int
         :rtype: bool
         """
-        index_map = {}
-    
-        for i, num in enumerate(nums):
-            if num in index_map and abs(i - index_map[num]) <= k:
-                return True
+        # Initialize an empty dictionary to store the index of each number
+        num_dict = {}
 
-            index_map[num] = i  # Update the index of the number
-    
-        return False
+        # Loop through the array with the index and the value (num)
+        for idx, num in enumerate(nums):
+            # If the number is not yet in the dictionary, add it with its index
+            if num not in num_dict:
+                num_dict[num] = idx
+            # If the number is already in the dictionary (we have seen it before)
+            elif num in num_dict:
+                # Get the previously stored index of the number
+                index = num_dict[num]
+                # Check if the difference between the current index and the previous index is less than or equal to k
+                if abs(index - idx) <= k:
+                    return True  # If the condition is met, return True
+                else:
+                    # Update the dictionary with the current index of the number (since we only care about the latest occurrence)
+                    num_dict[num] = idx
         
+        # If no such pair is found after the loop, return False
+        return False
