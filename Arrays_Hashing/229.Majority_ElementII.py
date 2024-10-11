@@ -85,3 +85,25 @@ class Solution(object):
         
         # Return the result list containing all valid majority elements.
         return result
+
+
+"----------------------------------------------------------------------------------"
+
+class Solution(object):
+    def majorityElement(self, nums):
+        # Initialize an empty list to store the result
+        res = []
+        
+        # Loop through each element in the input array 'nums'
+        for i in nums:
+            # Check if the count of the current element 'i' is greater than n // 3
+            # nums.count(i) counts how many times 'i' appears in 'nums'
+            # len(nums) // 3 calculates ⌊ n/3 ⌋
+            if nums.count(i) > len(nums) // 3:
+                # If 'i' appears more than ⌊ n/3 ⌋ times, add it to the result list 'res'
+                res.append(i)
+        
+        # Convert the result list 'res' to a set to remove duplicates, then back to a list
+        # This ensures that only unique elements are returned
+        return list(set(res))
+
